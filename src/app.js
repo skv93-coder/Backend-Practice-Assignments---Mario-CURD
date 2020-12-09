@@ -43,7 +43,7 @@ app.patch("/mario/:id", (req, res) => {
   const { name, weight } = req.body;
 
   marioModel
-    .findByIdAndUpdate(id, req.body)
+    .findByIdAndUpdate(id, { name: name, weight: Number(weight, 10) })
     .then((result) => res.send(req.params.body))
     .catch((error) => res.status(400).send({ message: error.message }));
 });
