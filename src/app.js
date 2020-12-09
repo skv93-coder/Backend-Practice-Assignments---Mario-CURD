@@ -23,7 +23,7 @@ app.post("/mario", (req, res) => {
   });
   mario
     .save()
-    .then(() => res.send(mario))
+    .then((result) => res.send(result))
     .catch((err) => console.logerr);
 });
 app.get("/mario", (req, res) => {
