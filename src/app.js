@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // your code goes here
 app.post("/mario", (req, res) => {
-  if (!req.body.weight || req.body.name) {
+  if (!req.body.weight || !req.body.name) {
     res.status(400).send({ message: "either name or weight is missing" });
     return;
   }
