@@ -46,7 +46,7 @@ app.patch("/mario/:id", (req, res) => {
 
   marioModel
     .findByIdAndUpdate(id, req.body, { new: true })
-    .then((result) => res.send(req.body))
+    .then((result) => res.send(result))
     .catch((error) => res.status(400).send({ message: error.message }));
 });
 app.delete("/mario/:id", (req, res) => {
