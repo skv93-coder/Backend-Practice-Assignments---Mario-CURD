@@ -23,8 +23,10 @@ app.post("/mario", (req, res) => {
   });
   mario
     .save()
-    .then((result) => res.send(result))
-    .catch((err) => console.logerr);
+    .then((result) => res.status(201).send(result))
+    .catch((err) =>
+      res.status(400).send({ message: "either name or weight is missing" })
+    );
 });
 app.get("/mario", (req, res) => {
   marioModel.find({}, (err, result) => {
@@ -43,7 +45,7 @@ app.patch("/mario/:id", (req, res) => {
   const { name, weight } = req.body;
 
   marioModel
-    .findByIdAndUpdate(id, { name: name, weight: Number(weight, 10) })
+    .findByIdAndUpdate(id, req.body, { new: true })
     .then((result) => res.send(req.params.body))
     .catch((error) => res.status(400).send({ message: error.message }));
 });
